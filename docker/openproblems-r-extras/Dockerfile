@@ -8,10 +8,12 @@ ARG NB_GID="100"
 USER root
 WORKDIR /
 
-RUN sudo apt-get update && sudo apt-get install -y libhdf5-dev
 
 # Install R packages
 COPY ./docker/openproblems-r-extras/r_requirements.txt ./r_requirements.txt
+RUN sudo apt-get update
+RUN sudo apt-get install -y libhdf5-dev
+
 RUN sudo R -e "renv::install(scan('r_requirements.txt', sep='\n', what=character()))"
 RUN sudo R -e 'install.packages("devtools")'
 RUN sudo R -e 'devtools::install_github("immunogenomics/harmony")'
