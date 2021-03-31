@@ -10,4 +10,6 @@ def cc_score(adata):
     from ._utils import _get_split
     from scIB.metrics import cell_cycle
 
-    return cell_cycle(*_get_split(adata), "batch", embed="X_emb")
+    return cell_cycle(
+        *_get_split(adata), "batch", embed="X_emb", organism=adata.uns["organism"]
+    )

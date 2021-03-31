@@ -14,6 +14,7 @@ def pancreas_batch(test=False):
     adata.obs["labels"] = adata.obs["celltype"]
 
     adata.obs["batch"] = adata.obs["tech"]
+    adata.uns["organism"] = "human"
     adata.layers["counts"] = adata.X
 
     sc.pp.filter_genes(adata, min_counts=1)

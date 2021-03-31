@@ -1,4 +1,4 @@
-from .datasets.pancreas import load_pancreas
+from .datasets.pancreas import pancreas_batch
 
 
 def check_dataset(adata):
@@ -19,15 +19,13 @@ def check_method(adata):
 
 def sample_dataset():
     """Create a simple dataset to use for testing methods in this task."""
-    adata = load_pancreas(True)
-    print(adata.obs.columns)
+    adata = pancreas_batch(True)
 
     return adata
 
 
 def sample_method(adata):
     """Create sample method output for testing metrics in this task."""
-    import scanpy as sc
 
-    sc.pp.neighbors(adata, use_rep="X_uni")
+    adata.obsm["X_emb"] = adata.obsm["X_uni"]
     return adata

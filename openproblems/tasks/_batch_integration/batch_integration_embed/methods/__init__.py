@@ -1,7 +1,3 @@
-from ...batch_integration_graph.methods.bbknn import bbknn_full_scaled
-from ...batch_integration_graph.methods.bbknn import bbknn_full_unscaled
-from ...batch_integration_graph.methods.bbknn import bbknn_hvg_scaled
-from ...batch_integration_graph.methods.bbknn import bbknn_hvg_unscaled
 from ...batch_integration_graph.methods.combat import combat_full_scaled
 from ...batch_integration_graph.methods.combat import combat_full_unscaled
 from ...batch_integration_graph.methods.combat import combat_hvg_scaled
