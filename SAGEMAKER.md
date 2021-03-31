@@ -21,17 +21,20 @@ You also might find it helpful to consult AWS Documentation for bringing your ow
 There is a 1:1 correspondence between the steps to set up SageMaker using the CLI and the Console UI. We use the Console in our video and this guide, but feel free to use the CLI if you are more comfortable with it.
 
 ### Table of Contents
-- [Introduction to the GitHub repository](#introduction-to-the-github-repository)
-  * [Why Docker containers?](#why-docker-containers)
-  * [Prototyping within Docker containers](#prototyping-within-docker-containers)
-- [Getting started and forking the GitHub repository](#getting-started-and-forking-the-github-repository)
-- [Editing a Dockerfile](#editing-a-dockerfile)
-- [Find your Docker container on the Elastic Container Registry](#find-your-docker-container-on-the-elastic-container-registry)
-- [Attach your Image to SageMaker Studio](#attach-your-image-to-sagemaker-studio)
-- [Add user to SageMaker Studio](#add-user-to-sagemaker-studio)
-- [Open SageMaker Studio and Launch a Notebook using a Custom Image](#open-sagemaker-studio-and-launch-a-notebook-using-a-custom-image)
-  * [Selecting an instance type](#selecting-an-instance-type)
-  * [Kernel not found error](#kernel-not-found-error)
+- [Guide to GitHub and AWS SageMaker for the Open Problems Jamboree](#guide-to-github-and-aws-sagemaker-for-the-open-problems-jamboree)
+    - [Steps](#steps)
+    - [Table of Contents](#table-of-contents)
+  - [Introduction to the GitHub repository](#introduction-to-the-github-repository)
+    - [Why Docker containers?](#why-docker-containers)
+    - [Prototyping within Docker containers](#prototyping-within-docker-containers)
+  - [Getting started and forking the GitHub repository](#getting-started-and-forking-the-github-repository)
+  - [Editing a Dockerfile](#editing-a-dockerfile)
+  - [Find your Docker container on the Elastic Container Registry](#find-your-docker-container-on-the-elastic-container-registry)
+  - [Attach your Image to SageMaker Studio](#attach-your-image-to-sagemaker-studio)
+  - [Add user to SageMaker Studio](#add-user-to-sagemaker-studio)
+  - [Open SageMaker Studio and Launch a Notebook using a Custom Image](#open-sagemaker-studio-and-launch-a-notebook-using-a-custom-image)
+    - [Selecting an instance type](#selecting-an-instance-type)
+    - [Failed to start kernel (image does not exist)](#failed-to-start-kernel-image-does-not-exist)
 
 <!-- Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/) -->
 
@@ -177,16 +180,16 @@ When you open a new notebook for the first time, you are assigned a default Amaz
 
 We've selected three instances to use during the Jamboree. Note, it is possible to select any kind of instance, but please only select from the following instances. If you need access to a different instance type, please contact an `@organizer` on Discord.
 
-|   Instance Type   | vCPU   | Memory    | GPU  |  $/hr     | Intended Use                              |
-|-------------------|:------:|:---------:|:----:|:---------:|-------------------------------------------|
-|    `ml.t3.medium` |   `2`  |  `4 GiB`  |  `0` | `$0.0582` | General prototyping with test datasets    |
-|   `ml.t3.2xlarge` |   `8`  |  `32 GiB` |  `0` | `$0.4659` | Production prototyping with full datasets |
-| `ml.g4dn.2xlarge` |   `8`  |  `32 GiB` |  `1` | `$1.0528` | Prototyping requiring a GPU               |
+| Instance Type     | vCPU  |  Memory  |  GPU  |   $/hr    | Intended Use                              |
+| ----------------- | :---: | :------: | :---: | :-------: | ----------------------------------------- |
+| `ml.t3.medium`    |  `2`  | `4 GiB`  |  `0`  | `$0.0582` | General prototyping with test datasets    |
+| `ml.t3.2xlarge`   |  `8`  | `32 GiB` |  `0`  | `$0.4659` | Production prototyping with full datasets |
+| `ml.g4dn.2xlarge` |  `8`  | `32 GiB` |  `1`  | `$1.0528` | Prototyping requiring a GPU               |
 
 To change your instance, follow the [Change Instance Type](https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks-run-and-manage-switch-instance-type.html) tutorial from AWS.
 
 
-### Kernel not found error
+### Failed to start kernel (image does not exist)
 
 If you see the following error:
 

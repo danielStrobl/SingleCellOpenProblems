@@ -1,9 +1,11 @@
+# Guide to Docker images
 This guide provides instructions on editing the Docker images used to run `methods`, `metrics`, and load `datasets` for the Open Problems benchmarking infrastructure.
 
 Note, all images must comply to the [AWS SageMaker Custom Image Specifications](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi-specs.html).
 
 **Table of Contents**
-- [Docker images](#docker-images)
+- [Guide to Docker images](#guide-to-docker-images)
+  - [About Docker images](#about-docker-images)
   - [Available images](#available-images)
     - [openproblems](#openproblems)
     - [openproblems-r-base](#openproblems-r-base)
@@ -14,15 +16,16 @@ Note, all images must comply to the [AWS SageMaker Custom Image Specifications](
   - [Building Docker images locally](#building-docker-images-locally)
   - [Building Docker images through GitHub Actions workflows](#building-docker-images-through-github-actions-workflows)
   - [Pulling images from the ECR to your local machine](#pulling-images-from-the-ecr-to-your-local-machine)
+
 <!-- Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/) -->
 
 **Additional resources**
 * [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/) - Documentation from Docker on how to write Dockerfiles
 * [SageMaker Studio Custom Image Samples](https://github.com/aws-samples/sagemaker-studio-custom-image-samples/) - Example images from AWS designed for compatibility with SageMaker
 
-# Docker images
+## About Docker images
 
-By default, all methods and metrics run in the `openproblems` docker image. If you require additional dependencies, you can either add them to an existing docker image, or if this is not possible due to conflicts, add a new one.
+By default, all methods, metrics, and dataset loaders run in the `openproblems` docker image. If you require additional dependencies, you can either add them to an existing docker image, or if this is not possible due to conflicts, add a new one.
 
 To define which image is to be used in a method or metric, simply set the `image` parameter in the method decorator to match the name of the folder containing the Dockerfile (e.g., `image="openproblems-r-base"`).
 
@@ -110,7 +113,7 @@ If that workflow failed, you should look at the workflow logs to find the error.
 
 You can find your successfully uploaded images on the ECR. To navigate to the ECR, search the AWS console for "ECR" and click on "Repositories" and then click on `openproblems`. You should also see a `nextflow` repository that's used for your benchmarking backend, but you can ignore that for now.
 
-As you can see below, images uploaded to the ECR have Image Tags in the following format `openproblems:[first 6 characters of username]-[branch name]-[image name]`. For example, `danielStrobl` recently pushed his `batch-integration` branch containing a `openproblems-python37-scgen` image. This is converted to an Image Tag `daniel-batch-integration-openproblems-python37-scgen`.
+As you can see below, images uploaded to the ECR have Image Tags in the following format `openproblems:[first 6 characters of username]-[branch name]-[image name]`. For example, `danielStrobel` recently pushed his `batch-integration` branch containing a `openproblems-python37-scgen` image. This is converted to an Image Tag `daniel-batch-integration-openproblems-python37-scgen`.
 
 
 <img width="800" alt="Untitled" src="https://user-images.githubusercontent.com/8322751/112719414-43b14e80-8ecf-11eb-8fe2-5588e42c77c5.png">
