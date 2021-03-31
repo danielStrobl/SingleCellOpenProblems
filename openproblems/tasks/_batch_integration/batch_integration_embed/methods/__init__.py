@@ -39,14 +39,30 @@ from ...batch_integration_graph.methods.mnn import mnn_hvg_unscaled
 # from ...batch_integration_graph.methods.saucie_full import saucie_feature_full_unscaled
 # from ...batch_integration_graph.methods.saucie_full import saucie_feature_hvg_scaled
 # from ...batch_integration_graph.methods.saucie_full import saucie_feature_hvg_unscaled
-from ...batch_integration_graph.methods.scanorama_embed import scanorama_embed_full_scaled
-from ...batch_integration_graph.methods.scanorama_embed import scanorama_embed_full_unscaled
-from ...batch_integration_graph.methods.scanorama_embed import scanorama_embed_hvg_scaled
-from ...batch_integration_graph.methods.scanorama_embed import scanorama_embed_hvg_unscaled
-from ...batch_integration_graph.methods.scanorama_full import scanorama_feature_full_scaled
-from ...batch_integration_graph.methods.scanorama_full import scanorama_feature_full_unscaled
-from ...batch_integration_graph.methods.scanorama_full import scanorama_feature_hvg_scaled
-from ...batch_integration_graph.methods.scanorama_full import scanorama_feature_hvg_unscaled
+from ...batch_integration_graph.methods.scanorama_embed import (
+    scanorama_embed_full_scaled,
+)
+from ...batch_integration_graph.methods.scanorama_embed import (
+    scanorama_embed_full_unscaled,
+)
+from ...batch_integration_graph.methods.scanorama_embed import (
+    scanorama_embed_hvg_scaled,
+)
+from ...batch_integration_graph.methods.scanorama_embed import (
+    scanorama_embed_hvg_unscaled,
+)
+from ...batch_integration_graph.methods.scanorama_full import (
+    scanorama_feature_full_scaled,
+)
+from ...batch_integration_graph.methods.scanorama_full import (
+    scanorama_feature_full_unscaled,
+)
+from ...batch_integration_graph.methods.scanorama_full import (
+    scanorama_feature_hvg_scaled,
+)
+from ...batch_integration_graph.methods.scanorama_full import (
+    scanorama_feature_hvg_unscaled,
+)
 
 # from ...batch_integration_graph.methods.scanvi import scanvi_full_unscaled
 # from ...batch_integration_graph.methods.scanvi import scanvi_hvg_unscaled
