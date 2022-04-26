@@ -40,8 +40,9 @@ rule refresh_docker_image:
     params:
         sourcedir = os.path.dirname(tools.SCRIPTS_DIR),
         user = "singlecellopenproblems",
+        label = "github_actions" if "GITHUB_ACTIONS" in os.environ else "local"
     shell:
-        "docker build -f {input.dockerfile} -t {params.user}/{wildcards.image} .."
+        "docker build --label bio.openproblems.build={params.label} -f {input.dockerfile} -t {params.user}/{wildcards.image} .."
 
 rule refresh_dockerfile:
     input:
@@ -53,12 +54,13 @@ rule refresh_dockerfile:
 FROM singlecellopenproblems/{wildcards.image}:latest AS base
 # Copy requirements files
 COPY ./docker/{wildcards.image}/* ./
+COPY ./scripts/install_renv.R ./
 
 # Install Python packages
 RUN if [ -f requirements.txt ]; then sudo pip install --no-cache-dir -U -r requirements.txt; fi
 
 # Install R packages
-RUN if [ -f r_requirements.txt ]; then sudo R -e "renv::install(scan(\"r_requirements.txt\", sep=\"\n\", what=character()))"; fi
+RUN if [ -f r_requirements.txt ]; then sudo R -e "source(\"install_renv.R\"); install_renv(\"r_requirements.txt\")"; fi
 
 # Install single-cell open problems
 COPY . /usr/src/singlecellopenproblems
@@ -74,9 +76,10 @@ rule build_docker_image:
         temp(touch("{}/{{image}}/.docker_build".format(tools.IMAGES_DIR)))
     params:
         sourcedir = os.path.dirname(tools.SCRIPTS_DIR),
-        user = "singlecellopenproblems"
+        user = "singlecellopenproblems",
+        label = tools.build_type
     shell:
-        "docker build -f {input.dockerfile} -t {params.user}/{wildcards.image} .."
+        "docker build --label bio.openproblems.build={params.label} -f {input.dockerfile} -t {params.user}/{wildcards.image} .."
 
 rule password_docker:
     output:
