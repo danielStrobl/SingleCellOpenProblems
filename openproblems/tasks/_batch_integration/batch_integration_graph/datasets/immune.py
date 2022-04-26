@@ -3,10 +3,8 @@ from .....tools.decorators import dataset
 
 import scanpy as sc
 
-# from scIB.preprocessing import normalize, hvg_batch
 
-
-@dataset(dataset_name="Immune (by batch)", image="openproblems-r-base")
+@dataset(dataset_name="Immune (by batch)", image="openproblems")
 def immune_batch(test=False):
     adata = load_immune(test)
     from_cache = adata.__from_cache__
@@ -25,7 +23,4 @@ def immune_batch(test=False):
     sc.pp.neighbors(adata, use_rep="X_uni", key_added="uni")
 
     adata.__from_cache__ = from_cache
-    if False:
-        sc.pp.subsample(adata, n_obs=200)
-        return adata[:, :500]
     return adata
